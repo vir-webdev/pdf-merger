@@ -1,0 +1,123 @@
+:root{
+  
+  --font_color:  #442B73;
+  --bg_color:#9790E2; 
+  --btn_bg:#161616;
+
+}
+*{
+  color: var(--font_color);
+  margin: 0;
+  padding: 0;
+}
+body{
+ background-image: url(./Sales\ Product\ Website.png);
+ background-size: cover;
+ height: 100vh;
+}
+.logo{
+    height: 40px;
+    width: 80px;
+    mix-blend-mode: multiply;
+}
+#content-card{
+    margin-top: 3%;
+}
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    font-size: x-large;
+    font-family: "Anton SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+  }
+  .center-text {
+    font-size: 18px; /* adjust as needed */
+    margin: 0;
+  }
+  .card{
+    border-radius: 16px;
+    background-color: #16161600;
+    box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.3),
+    0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+  }
+  button{
+    border-radius: 16px;
+    background-color: var(--btn_bg);
+    width: 100%;
+   
+  }
+  /* ===============  text on image ==================  */
+  
+  .image-container {
+    position: relative;
+    text-align: center;
+    /* color: white; */
+}
+
+.image {
+    display: block;
+    width: 100%;
+    border-radius: 16px 16px 16px 0px;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 8%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+
+}
+.text-overlay h1 {
+    font-size: 12px;
+    color: #f8f9fa;
+    background: var(--btn_bg);
+    border-radius: 16px;
+}
+hr{
+  /* background-color: #f8f9fa; */
+  margin: 0px ;
+}
+/* Footer */
+.footer {
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 0px 0px 16px 16px; 
+}
+.blur{
+  filter: blur(15px);
+}
+.bg-blur {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  /* background-color: rgba(255, 255, 255, 0.6); Optional for better visibility */
+}
+.image-container img {
+  mix-blend-mode: multiply;
+}
+
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+  background-color: #0056b3;
+}
+
+.form-control-file {
+  display: none;
+}

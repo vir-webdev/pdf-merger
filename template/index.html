@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Merger</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <!-- ===================================  navigation bar   ============================  -->
+  <nav class="navbar">
+    <p class=""> PDF MERGER</p>
+    <img src="Victoria4.jpg" class="logo">
+
+   <p></p>
+
+  </nav>
+  <hr>
+  <!-- ===================   content cards  ==========================     -->
+  <div class="mergepdf ">
+
+    <div class="container bg-blur " id="content-card">
+      <div class="row">
+
+
+        <div class="col-md-4">
+          <div class="card .bg-blur">
+            <div class="image-container">
+              <img src="3012865.jpg" alt="Sample Image" class="image mb-4">
+              <div class="text-overlay">
+                <h1> # Upload First file </h1>
+              </div>
+            </div>
+            <div class="card-body">
+              <label for="pdf2" class="custom-file-upload">
+                Upload PDF
+              </label>
+              <input type="file" class="form-control-file" id="pdf2" accept=".pdf">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-4">
+          <div class="card .bg-blur">
+            <div class="image-container">
+              <img src="3012865.jpg" alt="Sample Image" class="image mb-4">
+              <div class="text-overlay">
+                <h1> # upload second file </h1>
+              </div>
+            </div>
+            <div class="card-body">
+              <label for="pdf2" class="custom-file-upload">
+                Upload second PDF
+              </label>
+              <input type="file" class="form-control-file" id="pdf2" accept=".pdf">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="image-container">
+              <img src="./download.jpg" alt="Sample Image" class="image mb-4">
+              <div class="text-overlay">
+                <h1>#Click on Download</h1>
+              </div>
+            </div>
+            <div class="card-body align-self-sm-end">
+              <button class="btn btn-dark" id="mergeBtn">Merge and Download</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================   java script ==============================   -->
+    <script>
+      document.getElementById('mergeBtn').addEventListener('click', async () => {
+        const pdf1 = document.getElementById('pdf1').files[0];
+        const pdf2 = document.getElementById('pdf2').files[0];
+
+        if (!pdf1 || !pdf2) {
+          alert('Please upload both PDF files.');
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('pdfs', pdf1);
+        formData.append('pdfs', pdf2);
+
+        try {
+          const response = await fetch('/Merged', {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'merged.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+          } else {
+            const errorText = await response.text();
+            console.error('Merge failed:', errorText);
+            alert('Failed to merge PDFs: ' + errorText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred while merging PDFs: ' + error.message);
+        }
+      });
+    </script>
+    <footer class="footer mb-0">
+      <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+
+</html>
